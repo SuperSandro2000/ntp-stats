@@ -14,6 +14,18 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
+if ! bc --version >/dev/null 2>&1; then
+  echo "You need bc to run this scirpt."
+  echo "On Debian-based systems you can install it with: apt install bc"
+  exit 1
+fi
+
+if ! ntpq --version >/dev/null 2>&1; then
+  echo "You need ntpq to run this scirpt."
+  echo "On Debian-based systems you can install it with: apt install ntp"
+  exit 1
+fi
+
 stats=$(ntpq -c sysstats)
 
 uptime=$(echo -e "$stats" | awk 'NR==1{print $2}')
