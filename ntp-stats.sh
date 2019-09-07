@@ -37,12 +37,12 @@ restricted=$(echo -e "$stats" | awk 'NR==9{print $2}')
 rate_limited=$(echo -e "$stats" | awk 'NR==10{print $3}')
 
 if [[ ${debug:-} == true ]]; then
-    echo received_packets $received_packets
-    echo bad_packets $bad_packets
-    echo auth_failed $auth_failed
-    echo declined $declined
-    echo restricted $restricted
-    echo rate_limited $rate_limited
+    echo received_packets "$received_packets"
+    echo bad_packets "$bad_packets"
+    echo auth_failed "$auth_failed"
+    echo declined "$declined"
+    echo restricted "$restricted"
+    echo rate_limited "$rate_limited"
     echo
 fi
 
@@ -56,13 +56,13 @@ sent_per_month=$(echo "$sent_per_sec * $sec_per_month" | bc)
 sent_per_month_gigabyte=$(echo "$sent_per_month * 110 / (10 ^ 9)" | bc)
 
 echo === received ===
-echo packets received: $received_packets
-echo packets received per second: $received_per_sec
-echo packets received per month: $received_per_month
-echo gigabytes received per month: $received_per_month_gigabyte
+echo packets received: "$received_packets"
+echo packets received per second: "$received_per_sec"
+echo packets received per month: "$received_per_month"
+echo gigabytes received per month: "$received_per_month_gigabyte"
 echo
 echo === sent ===
-echo packets sent: $sent_packets
-echo packets sent per second: $sent_per_sec
-echo packets sent per month: $sent_per_month
-echo gigabytes sent per month: $sent_per_month_gigabyte
+echo packets sent: "$sent_packets"
+echo packets sent per second: "$sent_per_sec"
+echo packets sent per month: "$sent_per_month"
+echo gigabytes sent per month: "$sent_per_month_gigabyte"
