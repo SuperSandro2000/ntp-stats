@@ -4,7 +4,8 @@ set -eou pipefail
 while [[ $# -gt 0 ]]; do
     case "$1" in
     "-h" | "--help")
-        echo "Usage: $0 --debug"
+        echo "Usage: $0 [--debug]"
+        exit 0
         ;;
     "-d" | "--debug")
         debug=true
