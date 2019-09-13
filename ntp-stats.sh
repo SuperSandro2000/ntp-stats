@@ -14,17 +14,17 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-if ! bc --version >/dev/null 2>&1; then
-  echo "You need bc to run this scirpt."
-  echo "On Debian-based systems you can install it with: apt install bc"
-  exit 1
-fi
+function check_tool() {
+  if ! eval "$1" --version >/dev/null 2>&1; then
+    echo "You need $1 to run this script."
+    echo "On Debian-based systems you can install it with:"
+    echo "apt install ${2-1}"
+    exit 1
+  fi
+}
 
-if ! ntpq --version >/dev/null 2>&1; then
-  echo "You need ntpq to run this scirpt."
-  echo "On Debian-based systems you can install it with: apt install ntp"
-  exit 1
-fi
+check_tool bc
+check_tool ntp
 
 stats=$(ntpq -c sysstats)
 
