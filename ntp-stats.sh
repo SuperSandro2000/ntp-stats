@@ -2,16 +2,16 @@
 set -eou pipefail
 
 while [[ $# -gt 0 ]]; do
-    case "$1" in
+  case "$1" in
     "-h" | "--help")
-        echo "Usage: $0 [--debug]"
-        exit 0
-        ;;
+      echo "Usage: $0 [--debug]"
+      exit 0
+      ;;
     "-d" | "--debug")
-        debug=true
-        ;;
-    esac
-    shift
+      debug=true
+      ;;
+  esac
+  shift
 done
 
 function check_tool() {
@@ -37,13 +37,13 @@ restricted=$(echo -e "$stats" | awk 'NR==9{print $2}')
 rate_limited=$(echo -e "$stats" | awk 'NR==10{print $3}')
 
 if [[ ${debug:-} == true ]]; then
-    echo received_packets "$received_packets"
-    echo bad_packets "$bad_packets"
-    echo auth_failed "$auth_failed"
-    echo declined "$declined"
-    echo restricted "$restricted"
-    echo rate_limited "$rate_limited"
-    echo
+  echo received_packets "$received_packets"
+  echo bad_packets "$bad_packets"
+  echo auth_failed "$auth_failed"
+  echo declined "$declined"
+  echo restricted "$restricted"
+  echo rate_limited "$rate_limited"
+  echo
 fi
 
 sec_per_month=$(echo '60 * 60 * 24 * 30.436875' | bc)
