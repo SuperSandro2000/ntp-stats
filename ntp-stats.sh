@@ -24,7 +24,7 @@ function check_tool() {
 }
 
 check_tool bc
-check_tool ntp
+check_tool "ntpq --version" ntp
 
 stats=$(ntpq -c sysstats)
 
